@@ -41,7 +41,7 @@ def fetch_api_data():
       response = requests.get(api_url,params={'date': date, 'page': n}, headers=headers)
       
       if response.status_code != 200:
-        return jsonify({"message": "Вивантажено "+str(n-1)+" сторінки"}), response.status_code
+        return jsonify({"message": "Вивантажено "+str(n-1)+" сторінки"}), 201
        
       data = response.json()
     
@@ -53,4 +53,4 @@ def fetch_api_data():
           json.dump(data, f, indent=4)
       
 if __name__ == '__main__':
-    app.run(debug=True, port=8081)
+    app.run(host='0.0.0.0',debug=True, port=8081)
